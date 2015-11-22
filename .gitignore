@@ -1,0 +1,9 @@
+# IntelliJ
+CS146-Project.iml
+out/*
+
+# Java
+*.class
+
+# Eclipse
+# Not sure about Eclipse specific project files, will set up with Chris on Monday
