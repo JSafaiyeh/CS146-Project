@@ -1,6 +1,7 @@
 # IntelliJ
 CS146-Project.iml
 out/*
+.idea/*
 
 # Java
 *.class
