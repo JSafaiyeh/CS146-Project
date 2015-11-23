@@ -60,13 +60,9 @@ public class TestGraph {
 		Node YUH = new Node("Yoshihiro Uchida Hall", 37.333599, -121.883890);
 		
 		NPG.addEdge(CYA);
-		CYA.addEdge(NPG);
 		CYA.addEdge(CYB);
-		CYB.addEdge(CYA);
 		NPG.addEdge(SSC);
-		SSC.addEdge(NPG);
 		SSC.addEdge(CYA);
-		CYA.addEdge(SSC);
 		
 		Graph SJSU = new Graph();
 		SJSU.addVertice(NPG);
