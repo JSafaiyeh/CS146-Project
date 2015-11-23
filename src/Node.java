@@ -24,11 +24,14 @@ public class Node {
     }
 
     /**
-     * Adds an edge linked to the current Node.
+     * Adds a two way edge linked to the current Node.
      * @param node
      */
     public void addEdge(Node node) {
         edges.put(node, distanceFrom(node));
+        
+        if(!node.edges.keySet().contains(this))
+        	node.addEdge(this);
     }
 
     /**

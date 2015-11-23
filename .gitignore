@@ -8,3 +8,8 @@ out/*
 
 # Eclipse
 # Not sure about Eclipse specific project files, will set up with Chris on Monday
+/bin/
+
+# after building I found these that should be ignored
+.classpath
+.project
