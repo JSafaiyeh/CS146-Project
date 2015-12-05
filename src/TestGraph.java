@@ -1,10 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestGraph {
 
+	public static ArrayList<Node> nodeList = new ArrayList<Node>();
+	
 	//public TestGraph(){
-
 	public static void main(String[] args) {
-
+		
 		Node NPG = new Node("North garage at Tenth Street", 37.338886, -121.880801);
 		Node WPG = new Node("West garage at Fourth Street", 37.332410, -121.882997);
 		Node SPG = new Node("South garage at Seventh Street", 37.333126, -121.880851);
@@ -13,6 +16,7 @@ public class TestGraph {
 		Node AQX = new Node("Aquatics Center", 37.334875, -121.879103);
 		Node ART = new Node("Art Building", 37.336042, -121.879741);
 		Node ASH = new Node("Associated Students House", 37.333358, -121.882676);
+		Node ASP = new Node("ASP", 37.334490, -121.879891);
 		Node B  = new Node("Modular B", 37.334740, -121.879790);
 		Node BBC = new Node("Boccardo Business Complex", 37.336511, -121.878979);
 		Node BB = new Node("Building BB", 37.335081, -121.878707);
@@ -22,6 +26,7 @@ public class TestGraph {
 		Node CC = new Node("Computer Center", 37.335952, -121.883288);
 		Node CCB = new Node("Central Classroom Building", 37.335670, -121.881882);
 		Node CL = new Node("Clark Hall", 37.336216, -121.882526);
+		Node CH = new Node("Music Bldg", 37.335484, -121.880610);
 		Node CP = new Node("Cooling Plant", 37.336080, -121.878512);
 		Node CVA = new Node("Campus Village A", 37.334416, -121.877387);
 		Node CVB = new Node("Campus Village B", 37.334834, -121.876958);
@@ -34,6 +39,7 @@ public class TestGraph {
 		Node DBH = new Node("Dwight Bentel Hall", 37.335107, -121.882344);
 		Node ENG = new Node("Engineering Building", 37.337155, -121.881624);
 		Node EC = new Node("Event Center", 37.335064, -121.880423);
+		Node HB = new Node("Health Bldg", 37.335723, -121.879146);
 		Node FOB = new Node("Faculty Offices", 37.334518, -121.882826);
 		Node HOV = new Node("Hoover Hall", 37.334416, -121.879865);
 		Node HGH = new Node("Hugh Gillis Hall", 37.335841, -121.884425);
@@ -55,6 +61,7 @@ public class TestGraph {
 		Node SH = new Node("Sweeney Hall", 37.333931, -121.881036);
 		Node TH = new Node("Tower Hall", 37.335313, -121.883472);
 		Node UPD = new Node("University Police Department", 37.333437, -121.880199);
+		Node UT = new Node("Hugh Gillis Hall", 37.336136, -121.884821);
 		Node WSH = new Node("Washburn Hall", 37.333633, -121.879341);
 		Node WSQ = new Node("Washington Square Hall", 37.334170, -121.884244);
 		Node YUH = new Node("Yoshihiro Uchida Hall", 37.333599, -121.883890);
@@ -63,12 +70,155 @@ public class TestGraph {
 		CYA.addEdge(CYB);
 		NPG.addEdge(SSC);
 		SSC.addEdge(CYA);
+		CYA.addEdge(IS);;
+		CYB.addEdge(IS);
+		CYB.addEdge(BK);
+		CYB.addEdge(BT);
+		BT.addEdge(BBC);
+		BBC.addEdge(CP);
+		CP.addEdge(ART);
+		CP.addEdge(HB);
+		HB.addEdge(EC);
+		HB.addEdge(ART);
+		ART.addEdge(BK);
+		BK.addEdge(SU);
+		IS.addEdge(ENG);
+		ENG.addEdge(SU);
+		ENG.addEdge(MUS);
+		ENG.addEdge(CAR);
+		ENG.addEdge(ADM);
+		ENG.addEdge(CL);
+		ENG.addEdge(CCB);
+		SU.addEdge(CCB);
+		SU.addEdge(MUS);
+		MUS.addEdge(CH);
+		CAR.addEdge(ADM);
+		ADM.addEdge(CL);
+		CL.addEdge(CCB);
+		CCB.addEdge(SHCC);
+		SHCC.addEdge(SPXE);
+		SHCC.addEdge(DBH);
+		CCB.addEdge(DBH);
+		DBH.addEdge(FOB);
+		FOB.addEdge(SPXE);
+		SPXE.addEdge(SPXC);
+		SPXC.addEdge(FOB);
+		SPXC.addEdge(YUH);
+		SPXC.addEdge(SPM);
+		SPM.addEdge(YUH);
+		WSQ.addEdge(YUH);
+		SPM.addEdge(WSQ);
+		FOB.addEdge(SPM);
+		DBH.addEdge(MD);
+		WSQ.addEdge(SCI);
+		SCI.addEdge(KING);
+		KING.addEdge(HGH);
+		KING.addEdge(UT);
+		UT.addEdge(HGH);
+		UT.addEdge(DMH);
+		HGH.addEdge(DMH);
+		HGH.addEdge(IRC);
+		UT.addEdge(IRC);
+		DMH.addEdge(IRC);
+		DMH.addEdge(CAR);
+		DMH.addEdge(ADM);
+		IRC.addEdge(ADM);
+		IRC.addEdge(CAR);
+		IRC.addEdge(CC);
+		KING.addEdge(TH);
+		KING.addEdge(MD);
+		TH.addEdge(MD);
+		TH.addEdge(SCI);
+		TH.addEdge(WSQ);
+		CC.addEdge(CL);
+		CC.addEdge(TH);
+		CC.addEdge(MD);
+		CL.addEdge(MD);
+		CL.addEdge(TH);
+		HGH.addEdge(SCI);
+		HGH.addEdge(WSQ);
+		HGH.addEdge(SPM);
+		HGH.addEdge(TH);
+		HGH.addEdge(MD);
+		IRC.addEdge(TH);
+		IRC.addEdge(MD);
+		MD.addEdge(CCB);
+		CC.addEdge(CCB);
+		CC.addEdge(DBH);
+		CC.addEdge(KING);
+		CC.addEdge(HGH);
+		CC.addEdge(ADM);
+		CC.addEdge(CAR);
+		CC.addEdge(SCI);
+		WSQ.addEdge(FOB);
+		FOB.addEdge(MD);
+		MD.addEdge(WSQ);
+		YUH.addEdge(WPG);
+		WPG.addEdge(ASH);
+		WPG.addEdge(DH);
+		DH.addEdge(MQH);
+		ASH.addEdge(MQH);
+		ASH.addEdge(YUH);
+		ASH.addEdge(SPXC);
+		ASH.addEdge(SPXE);
+		ASH.addEdge(DH);
+		SPXE.addEdge(MQH);
+		SPXE.addEdge(MQH);
+		MQH.addEdge(SPG);
+		DH.addEdge(SPG);
+		SPG.addEdge(SH);
+		SPXE.addEdge(SH);
+		MQH.addEdge(SPG);
+		MQH.addEdge(SHCC);
+		SH.addEdge(SHCC);
+		SPG.addEdge(SPXE);
+		SPG.addEdge(UPD);
+		SH.addEdge(UPD);
+		UPD.addEdge(WSH);
+		WSH.addEdge(RYC);
+		RYC.addEdge(HOV);
+		SH.addEdge(HOV);
+		SH.addEdge(RYC);
+		RYC.addEdge(UPD);
+		WSH.addEdge(SH);
+		HOV.addEdge(UPD);
+		HOV.addEdge(A);
+		HOV.addEdge(B);
+		EC.addEdge(HOV);
+		EC.addEdge(SH);
+		EC.addEdge(A);
+		EC.addEdge(B);
+		AQX.addEdge(A);
+		AQX.addEdge(B);
+		AQX.addEdge(HOV);
+		AQX.addEdge(DC);
+		RYC.addEdge(DC);
+		WSH.addEdge(DC);
+		DC.addEdge(HOV);
+		ASP.addEdge(A);
+		ASP.addEdge(B);
+		ASP.addEdge(HOV);
+		ASP.addEdge(AQX);
+		AQX.addEdge(BB);
+		DC.addEdge(JWH);
+		BB.addEdge(JWH);
+		AQX.addEdge(EC);
+		HB.addEdge(BB);
+		HB.addEdge(AQX);
+		HB.addEdge(CVC);
+		BB.addEdge(CVC);
+		CP.addEdge(CVC);
+		JWH.addEdge(CVA);
+		CVC.addEdge(CVA);
+		CVA.addEdge(CVB);
+		CVC.addEdge(CVB);
 		
 		Graph SJSU = new Graph();
-		SJSU.addVertice(NPG);
-		SJSU.addVertice(CYA);
-		SJSU.addVertice(CYB);
-		SJSU.addVertice(SSC);
+		
+		nodeList.addAll(Arrays.asList(NPG, WPG, SPG, A, ADM, AQX, ART, ASH, ASP, B, BBC, BB, BK, BT, CAR, CC, CCB, CL, CH, CP, CVA, CVB, CVC, CYA, CYB, DC, DMH, HB, DBH, ENG, EC, HB, FOB, HOV, HGH, IS, IRC, JWH, KING, MQH, MD, MUS, RYC, SCI, SPXC, SPXE, SPM, SHCC, SSC, SU, SH, TH, UPD, UT, WSH, WSQ, YUH));
+		
+		for(Node N: nodeList)
+			SJSU.addVertice(N);
 	}
 
 }
