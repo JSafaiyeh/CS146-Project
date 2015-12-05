@@ -32,8 +32,8 @@ public class Node {
     public void addEdge(Node node) {
         edges.put(node, distanceFrom(node));
         
-        //if(!node.edges.keySet().contains(this))
-        	//node.addEdge(this);
+        if(!node.edges.keySet().contains(this))
+        	node.addEdge(this);
     }
 
     /**
@@ -84,7 +84,6 @@ public class Node {
     
     /**
      * Get map of edges associated with the Node.
-     * @param node
      * @return map of edges
      */
 	public Map<Node, Double> getEdges() {

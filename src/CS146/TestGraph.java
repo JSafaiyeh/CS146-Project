@@ -107,6 +107,7 @@ public class TestGraph {
 		SHCC.addEdge(SPXE);
 		SHCC.addEdge(DBH);
 		CCB.addEdge(DBH);
+		CCB.addEdge(EC);
 		DBH.addEdge(FOB);
 		FOB.addEdge(SPXE);
 		SPXE.addEdge(SPXC);
@@ -221,6 +222,11 @@ public class TestGraph {
 		CVA.addEdge(CVB);
 		CVC.addEdge(CVB);
 		CH.addEdge(EC);
+		EC.addEdge(SHCC);
+		SH.addEdge(MQH);
+		MUS.addEdge(SHCC);
+		MUS.addEdge(CCB);
+		
 		
 		CS146.Graph SJSU = new CS146.Graph();
 		
