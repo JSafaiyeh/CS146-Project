@@ -1,14 +1,9 @@
 package CS146;
 
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import org.graphstream.graph.*;
-import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.view.Viewer;
 
 
 public class TestGraph {
@@ -235,7 +230,7 @@ public class TestGraph {
 			SJSU.addVertice(N);
 		}
 		
-		org.graphstream.graph.Graph gs = new MultiGraph("graph explore");
+		org.graphstream.graph.Graph gs = new MultiGraph("SJSU map");
 
         for(Node N: SJSU.getVertice()){
         	gs.addNode(N.getLocationName());
