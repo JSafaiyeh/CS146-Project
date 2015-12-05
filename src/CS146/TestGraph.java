@@ -1,5 +1,15 @@
+package CS146;
+
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import org.graphstream.graph.*;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.Viewer;
+
 
 public class TestGraph {
 
@@ -26,7 +36,7 @@ public class TestGraph {
 		Node CC = new Node("Computer Center", 37.335952, -121.883288);
 		Node CCB = new Node("Central Classroom Building", 37.335670, -121.881882);
 		Node CL = new Node("Clark Hall", 37.336216, -121.882526);
-		Node CH = new Node("Music Bldg", 37.335484, -121.880610);
+		Node CH = new Node("Concert Hall", 37.335484, -121.880610);
 		Node CP = new Node("Cooling Plant", 37.336080, -121.878512);
 		Node CVA = new Node("Campus Village A", 37.334416, -121.877387);
 		Node CVB = new Node("Campus Village B", 37.334834, -121.876958);
@@ -61,7 +71,7 @@ public class TestGraph {
 		Node SH = new Node("Sweeney Hall", 37.333931, -121.881036);
 		Node TH = new Node("Tower Hall", 37.335313, -121.883472);
 		Node UPD = new Node("University Police Department", 37.333437, -121.880199);
-		Node UT = new Node("Hugh Gillis Hall", 37.336136, -121.884821);
+		Node UT = new Node("University Theatre", 37.336136, -121.884821);
 		Node WSH = new Node("Washburn Hall", 37.333633, -121.879341);
 		Node WSQ = new Node("Washington Square Hall", 37.334170, -121.884244);
 		Node YUH = new Node("Yoshihiro Uchida Hall", 37.333599, -121.883890);
@@ -76,11 +86,14 @@ public class TestGraph {
 		CYB.addEdge(BT);
 		BT.addEdge(BBC);
 		BBC.addEdge(CP);
+		BBC.addEdge(ART);
 		CP.addEdge(ART);
 		CP.addEdge(HB);
 		HB.addEdge(EC);
 		HB.addEdge(ART);
 		ART.addEdge(BK);
+		ART.addEdge(MUS);
+		ART.addEdge(EC);
 		BK.addEdge(SU);
 		IS.addEdge(ENG);
 		ENG.addEdge(SU);
@@ -212,13 +225,34 @@ public class TestGraph {
 		CVC.addEdge(CVA);
 		CVA.addEdge(CVB);
 		CVC.addEdge(CVB);
+		CH.addEdge(EC);
 		
-		Graph SJSU = new Graph();
+		CS146.Graph SJSU = new CS146.Graph();
 		
-		nodeList.addAll(Arrays.asList(NPG, WPG, SPG, A, ADM, AQX, ART, ASH, ASP, B, BBC, BB, BK, BT, CAR, CC, CCB, CL, CH, CP, CVA, CVB, CVC, CYA, CYB, DC, DMH, HB, DBH, ENG, EC, HB, FOB, HOV, HGH, IS, IRC, JWH, KING, MQH, MD, MUS, RYC, SCI, SPXC, SPXE, SPM, SHCC, SSC, SU, SH, TH, UPD, UT, WSH, WSQ, YUH));
+		nodeList.addAll(Arrays.asList(NPG, WPG, SPG, A, ADM, AQX, ART, ASH, ASP, B, BBC, BB, BK, BT, CAR, CC, CCB, CL, CH, CP, CVA, CVB, CVC, CYA, CYB, DC, DMH, DH, DBH, ENG, EC, HB, FOB, HOV, HGH, IS, IRC, JWH, KING, MQH, MD, MUS, RYC, SCI, SPXC, SPXE, SPM, SHCC, SSC, SU, SH, TH, UPD, UT, WSH, WSQ, YUH));
 		
-		for(Node N: nodeList)
+		for(Node N: nodeList){
 			SJSU.addVertice(N);
+		}
+		
+		org.graphstream.graph.Graph gs = new MultiGraph("graph explore");
+
+        for(Node N: SJSU.getVertice()){
+        	gs.addNode(N.getLocationName());
+        	gs.getNode(N.getLocationName()).setAttribute("xyz", N.getLongitude(),N.getLatitude());
+        	gs.getNode(N.getLocationName()).setAttribute("ui.label", gs.getNode(N.getLocationName()).getId());
+        }
+        
+        for(Node N: SJSU.getVertice()){
+        	for(Entry<Node, Double> asd:N.getEdges().entrySet()){
+        		gs.addEdge(N.getLocationName()+asd.getKey().getLocationName(), N.getLocationName(), asd.getKey().getLocationName());
+        	}
+        	
+        }
+        
+        gs.setAutoCreate(true);
+        gs.setStrict(false);
+        gs.display(false);
 	}
 
 }

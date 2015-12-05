@@ -1,3 +1,5 @@
+package CS146;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +32,8 @@ public class Node {
     public void addEdge(Node node) {
         edges.put(node, distanceFrom(node));
         
-        if(!node.edges.keySet().contains(this))
-        	node.addEdge(this);
+        //if(!node.edges.keySet().contains(this))
+        	//node.addEdge(this);
     }
 
     /**
@@ -79,4 +81,14 @@ public class Node {
 
         return R * c;
     }
+    
+    /**
+     * Get map of edges associated with the Node.
+     * @param node
+     * @return map of edges
+     */
+	public Map<Node, Double> getEdges() {
+		return edges;
+	}
+    
 }
