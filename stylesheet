@@ -1,0 +1,19 @@
+node {
+    size: 10px;
+    fill-color: black;
+    z-index: 2;
+}
+node.marked {
+	fill-color: red;
+}
+edge {
+    shape: line;
+    fill-color: #222;
+    arrow-size: 3px, 2px;
+}
+edge.path {
+	size: 3px; 
+	fill-color: red; 
+	stroke-width: 1px; 
+	stroke-mode: plain; 
+}
