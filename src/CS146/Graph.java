@@ -1,3 +1,5 @@
+package CS146;
+
 import java.util.ArrayList;
 
 /**
@@ -37,4 +39,8 @@ public class Graph {
     public void getPathGabows() {
 
     }
+
+	public ArrayList<Node> getVertice() {
+		return vertices;		
+	}
 }
