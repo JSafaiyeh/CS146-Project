@@ -47,16 +47,13 @@ public class TestGraph
     	private static CS146.Graph SJSU;
     	private String N1;
     	private String N2;
-
- 
-        
+    	
         public MyFrame() {
         	setTitle("CS146 final project");
         	GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         	this.setMaximizedBounds(env.getMaximumWindowBounds());
         	this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
             gs.addAttribute("ui.stylesheet", "url(file:///../stylesheet)");
-        			        
             
             ArrayList<Node> nodeList = new ArrayList<Node>();
             
@@ -294,9 +291,6 @@ public class TestGraph
             	}
             }
             
-            
-            
-            
             setLayout(new BorderLayout());
             setDefaultCloseOperation(EXIT_ON_CLOSE);
             
@@ -312,11 +306,9 @@ public class TestGraph
     		    array[i] = nodeList.get(i).getLocationName();
     		}
     		
-
-    		
-    		JComboBox jBox1 = new JComboBox(array);
-    		JComboBox jBox2 = new JComboBox(array);
-            JComboBox algoList = new JComboBox(algo);
+    		JComboBox<String> jBox1 = new JComboBox<>(array);
+    		JComboBox<String> jBox2 = new JComboBox<>(array);
+            JComboBox<String> algoList = new JComboBox<>(algo);
             
             algoList.setSelectedIndex(0);
             jBox1.setSelectedIndex(0);
@@ -348,13 +340,10 @@ public class TestGraph
             N1 = array[0];
             N2 = array[0];
             
-            
-        
         }
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//gs.getEdge(N1+N2).setAttribute("ui.class", "reset");
 			if(e.getActionCommand().equals("Node1")){
 				JComboBox cb = (JComboBox)e.getSource();
 		        String stuff = (String)cb.getSelectedItem();
@@ -376,15 +365,18 @@ public class TestGraph
 				text.setText("Directions > will > go > here");
 				//SJSU.getPathBellmanFord(N1, N2);
 				gs.getNode(N1).setAttribute("ui.class", "marked");
-				gs.getNode(N2).setAttribute("ui.class", "marked");
-				gs.getEdge(N1+N2).setAttribute("ui.class", "path");
-				
+				if(!N1.equals(N2)){
+					gs.getNode(N2).setAttribute("ui.class", "marked");
+					gs.getEdge(N1+N2).setAttribute("ui.class", "path");
+				}
 			}
 			else if(e.getActionCommand().equals("Reset")){
 				text.setText("reset");
 				gs.getNode(N1).removeAttribute("ui.class");
-				gs.getNode(N2).removeAttribute("ui.class");
-				gs.getEdge(N1+N2).removeAttribute("ui.class");
+				if(!N1.equals(N2)){
+					gs.getNode(N2).removeAttribute("ui.class");
+					gs.getEdge(N1+N2).removeAttribute("ui.class");
+				}
 			}
 		}
     }
