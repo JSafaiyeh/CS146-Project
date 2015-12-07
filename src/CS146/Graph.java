@@ -15,7 +15,7 @@ public class Graph {
         vertices = new ArrayList<>();
     }
 
-    public List<Node> shortestpath(Node source, Node destination) {
+    public List<String> shortestpath(Node source, Node destination) {
     	sourceNode = source;
     	destinationNode = destination;
     	
@@ -55,12 +55,12 @@ public class Graph {
 			}	
 		}
 		
-		List<Node> result = new LinkedList<Node>();
-		result.add(destinationNode);
+		List<String> result = new LinkedList<String>();
+		result.add(destinationNode.getLocationName());
 		Node tmp = destinationNode;
 		while(tmp!=sourceNode)
 		{
-			result.add(tmp.getPath());
+			result.add(tmp.getPath().getLocationName());
 			tmp = tmp.getPath();
 		}
         

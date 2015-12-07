@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -40,13 +41,15 @@ public class TestGraph
         private static final long serialVersionUID = 8394236698316485656L;
         private Viewer viewer = new Viewer(gs, Viewer.ThreadingModel.GRAPH_IN_SWING_THREAD);
         private View view = viewer.addDefaultView(false);
-        private String[] algo = { "BellMan", "Dijkstra"};
+        private String[] algo = { "Dijkstra", "BellMan"};
         protected boolean loop = true;
         protected ViewerPipe fromViewer = viewer.newViewerPipe();
     	private static org.graphstream.graph.Graph gs = new MultiGraph("SJSU map");
     	private static CS146.Graph SJSU;
     	private String N1;
     	private String N2;
+    	private ArrayList<Node> nodeList;
+    	private List<String> l;
     	
         public MyFrame() {
         	setTitle("CS146 final project");
@@ -55,7 +58,7 @@ public class TestGraph
         	this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
             gs.addAttribute("ui.stylesheet", "url(file:///../stylesheet)");
             
-            ArrayList<Node> nodeList = new ArrayList<Node>();
+            nodeList = new ArrayList<Node>();
             
             Node NPG = new Node("North garage at Tenth Street", 37.338886, -121.880801);
     		Node WPG = new Node("West garage at Fourth Street", 37.332410, -121.882997);
@@ -339,12 +342,15 @@ public class TestGraph
             
             N1 = array[0];
             N2 = array[0];
-            
-            List<Node> l = SJSU.shortestpath(NPG, MUS);
-            for(int i=0;i<l.size();i++){
-                System.out.println(l.get(i).getLocationName());
-            } 
-            
+        }
+        
+        public Node getNodeByName(String s){
+    		for(Node N: nodeList){
+    			if(s==N.getLocationName()){
+    	        	return N;
+    			}
+    		}
+			return nodeList.get(0);
         }
 
 		@Override
@@ -367,21 +373,26 @@ public class TestGraph
 				text.setText(stuff);
 			}
 			else if(e.getActionCommand().equals("Get Path")){
-				text.setText("Directions > will > go > here");
-				//SJSU.getPathBellmanFord(N1, N2);
+				//text.setText("Directions > will > go > here");
+				
+				l = SJSU.shortestpath(getNodeByName(N1), getNodeByName(N2));
 				gs.getNode(N1).setAttribute("ui.class", "marked");
-				if(!N1.equals(N2)){
-					gs.getNode(N2).setAttribute("ui.class", "marked");
-					gs.getEdge(N1+N2).setAttribute("ui.class", "path");
-				}
+				gs.getNode(N2).setAttribute("ui.class", "marked");
+				for(int i=0;i<l.size()-1;i++){
+					gs.getEdge(getNodeByName(l.get(i)).getLocationName()+getNodeByName(l.get(i+1)).getLocationName()).setAttribute("ui.class", "path");
+	            }
+				List<String> directions = l;
+				Collections.reverse(directions);
+				text.setText(String.join(" > ", directions));
 			}
 			else if(e.getActionCommand().equals("Reset")){
-				text.setText("reset");
-				gs.getNode(N1).removeAttribute("ui.class");
-				if(!N1.equals(N2)){
-					gs.getNode(N2).removeAttribute("ui.class");
-					gs.getEdge(N1+N2).removeAttribute("ui.class");
+				text.setText("Directions");
+				for(org.graphstream.graph.Edge E: gs.getEdgeSet()){
+					E.removeAttribute("ui.class");
 				}
+	    		for(org.graphstream.graph.Node N: gs.getNodeSet()){
+	    			N.removeAttribute("ui.class");
+	    		}
 			}
 		}
     }
