@@ -16,4 +16,5 @@ edge.path {
 	fill-color: red; 
 	stroke-width: 1px; 
 	stroke-mode: plain; 
+	z-index: 3;
 }
