@@ -379,6 +379,7 @@ public class TestGraph
 				gs.getNode(N1).setAttribute("ui.class", "marked");
 				gs.getNode(N2).setAttribute("ui.class", "marked");
 				for(int i=0;i<l.size()-1;i++){
+					gs.getNode(getNodeByName(l.get(i+1)).getLocationName()).setAttribute("ui.class", "marked");
 					gs.getEdge(getNodeByName(l.get(i)).getLocationName()+getNodeByName(l.get(i+1)).getLocationName()).setAttribute("ui.class", "path");
 	            }
 				List<String> directions = l;
