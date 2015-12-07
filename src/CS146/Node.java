@@ -125,7 +125,7 @@ public class Node {
      * Gets the distance of the node
      * @return
      */
-	public double getDistance(){
+	public double getDistanceFromS(){
 		return distance;
 	}
 

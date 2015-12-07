@@ -51,13 +51,13 @@ public class Graph {
 			for(Map.Entry<Node, Double> edge: v.getEdges().entrySet())
 			{
 				Node w = edge.getKey();
-				if(w.getDistance() == Double.POSITIVE_INFINITY)
+				if(w.getDistanceFromS() == Double.POSITIVE_INFINITY)
 				{
 					double cvw = edge.getValue(); // all v-w distances have been calculated in node class
-					if(v.getDistance() + cvw < w.getDistance()) // if v.distance (distance from source to v) + cost to go to next node is < distance from source to w node 
+					if(v.getDistanceFromS() + cvw < w.getDistanceFromS()) // if v.distance (distance from source to v) + cost to go to next node is < distance from source to w node 
 					{
 						// update w node to reflect the shorter distance
-						w.setDistance(v.getDistance() + cvw);
+						w.setDistance(v.getDistanceFromS() + cvw);
 						// add 
 						w.addNodeToPath(v);
 						q.add(w);
