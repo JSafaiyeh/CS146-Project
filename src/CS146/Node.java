@@ -96,35 +96,45 @@ public class Node {
 	public Map<Node, Double> getEdges() {
 		return edges;
 	}
-	
+
+    /**
+     * Returns the path of the node
+     * @return
+     */
 	public Node getPath() {
 		return path;
 	}
-	
+
+    /**
+     * Adds the Node to the path
+     * @param N
+     */
 	public void addNodeToPath(Node N){
 		path = N;
 	}
-	
-	public boolean isVisited(){
-		return visited;
-	}
-	
-	public void setVisited(){
-		visited = true;
-	}
-	
+
+    /**
+     * Set the distance of the node
+     * @param d
+     */
 	public void setDistance(double d){
 		distance = d;
 	}
-	
+
+    /**
+     * Gets the distance of the node
+     * @return
+     */
 	public double getDistance(){
 		return distance;
 	}
-	
+
+    /**
+     * Resets the path of to the node
+     */
 	public void reset(){
 		path = this;
 		visited = false;
 		distance = Double.POSITIVE_INFINITY;
 	}
-    
 }
