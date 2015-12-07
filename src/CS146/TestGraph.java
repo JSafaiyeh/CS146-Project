@@ -340,9 +340,9 @@ public class TestGraph
             N1 = array[0];
             N2 = array[0];
             
-            List<Node> l = SJSU.shortestpath(NPG, MUS);
+            List<String> l = SJSU.shortestpath(NPG, MUS);
             for(int i=0;i<l.size();i++){
-                System.out.println(l.get(i).getLocationName());
+                System.out.println(l.get(i));
             } 
             
         }
