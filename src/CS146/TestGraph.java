@@ -41,8 +41,6 @@ public class TestGraph
         private Viewer viewer = new Viewer(gs, Viewer.ThreadingModel.GRAPH_IN_SWING_THREAD);
         private View view = viewer.addDefaultView(false);
         private String[] algo = { "BellMan", "Dijkstra"};
-        protected boolean loop = true;
-        protected ViewerPipe fromViewer = viewer.newViewerPipe();
     	private static org.graphstream.graph.Graph gs = new MultiGraph("SJSU map");
     	private static CS146.Graph SJSU;
     	private String N1;
@@ -53,9 +51,9 @@ public class TestGraph
         	GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         	this.setMaximizedBounds(env.getMaximumWindowBounds());
         	this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-            gs.addAttribute("ui.stylesheet", "url(file:///../stylesheet)");
+            gs.addAttribute("ui.stylesheet", "url('stylesheet')");
             
-            ArrayList<Node> nodeList = new ArrayList<Node>();
+            ArrayList<Node> nodeList = new ArrayList<>();
             
             Node NPG = new Node("North garage at Tenth Street", 37.338886, -121.880801);
     		Node WPG = new Node("West garage at Fourth Street", 37.332410, -121.882997);
@@ -308,17 +306,14 @@ public class TestGraph
     		
     		JComboBox<String> jBox1 = new JComboBox<>(array);
     		JComboBox<String> jBox2 = new JComboBox<>(array);
-            JComboBox<String> algoList = new JComboBox<>(algo);
-            
-            algoList.setSelectedIndex(0);
+
             jBox1.setSelectedIndex(0);
             jBox2.setSelectedIndex(0);
 
             text = new JLabel("Directions");
             JButton button1 = new JButton("Get Path");
             JButton button2 = new JButton("Reset");
-            
-            algoList.addActionListener(this);
+
             jBox1.addActionListener(this);
             jBox2.addActionListener(this);
             button1.addActionListener(this);
@@ -326,12 +321,10 @@ public class TestGraph
             
             topPanel.add(jBox1);
             topPanel.add(jBox2);
-            topPanel.add(algoList);
             topPanel.add(button1);
             topPanel.add(button2);
             bottomPanel.add(text);
 
-            algoList.setActionCommand("Algo");
             jBox1.setActionCommand("Node1");
             jBox2.setActionCommand("Node2");
             button1.setActionCommand("Get Path");
@@ -339,6 +332,11 @@ public class TestGraph
             
             N1 = array[0];
             N2 = array[0];
+
+			for (Entry<String, Double> entry : SJSU.calculateBellmanFord(NPG).entrySet()) {
+				System.out.println(entry.getKey() + entry.getValue());
+			}
+
             
         }
 

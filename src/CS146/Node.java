@@ -70,7 +70,7 @@ public class Node {
         double longitudeDifference = Math.toRadians(node.getLongitude() - this.longitude);
 
         double latitude1 = Math.toRadians(this.latitude);
-        double latitude2 = Math.toRadians(this.longitude);
+        double latitude2 = Math.toRadians(node.getLatitude());
 
         double a = Math.pow(Math.sin(latitudeDifference / 2), 2)
                 + Math.pow(Math.sin(longitudeDifference / 2), 2)
