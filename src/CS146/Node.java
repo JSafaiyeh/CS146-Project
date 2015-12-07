@@ -11,6 +11,9 @@ public class Node {
     private double latitude;
     private double longitude;
     private Map<Node, Double> edges;
+    private Node path;
+    private boolean visited;
+    private double distance;
 
     /**
      * Constructor of the Node
@@ -23,6 +26,9 @@ public class Node {
         this.latitude = latitude;
         this.longitude = longitude;
         edges = new HashMap<>();
+    	path = this;
+    	visited = false;
+    	distance = Double.POSITIVE_INFINITY;
     }
 
     /**
@@ -70,7 +76,8 @@ public class Node {
         double longitudeDifference = Math.toRadians(node.getLongitude() - this.longitude);
 
         double latitude1 = Math.toRadians(this.latitude);
-        double latitude2 = Math.toRadians(this.longitude);
+        double latitude2 = Math.toRadians(node.getLatitude());
+        //double latitude2 = Math.toRadians(this.longitude);
 
         double a = Math.pow(Math.sin(latitudeDifference / 2), 2)
                 + Math.pow(Math.sin(longitudeDifference / 2), 2)
@@ -88,6 +95,36 @@ public class Node {
      */
 	public Map<Node, Double> getEdges() {
 		return edges;
+	}
+	
+	public Node getPath() {
+		return path;
+	}
+	
+	public void addNodeToPath(Node N){
+		path = N;
+	}
+	
+	public boolean isVisited(){
+		return visited;
+	}
+	
+	public void setVisited(){
+		visited = true;
+	}
+	
+	public void setDistance(double d){
+		distance = d;
+	}
+	
+	public double getDistance(){
+		return distance;
+	}
+	
+	public void reset(){
+		path = this;
+		visited = false;
+		distance = Double.POSITIVE_INFINITY;
 	}
     
 }
