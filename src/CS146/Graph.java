@@ -51,8 +51,8 @@ public class Graph {
 			for(Map.Entry<Node, Double> edge: v.getEdges().entrySet())
 			{
 				Node w = edge.getKey();
-				if(w.getDistanceFromS() == Double.POSITIVE_INFINITY)
-				{
+				//if(w.getDistanceFromS() == Double.POSITIVE_INFINITY)
+				//{
 					double cvw = edge.getValue(); // all v-w distances have been calculated in node class
 					if(v.getDistanceFromS() + cvw < w.getDistanceFromS()) // if v.distance (distance from source to v) + cost to go to next node is < distance from source to w node 
 					{
@@ -62,7 +62,7 @@ public class Graph {
 						w.addNodeToPath(v);
 						q.add(w);
 					}
-				}
+				//}
 			}	
 		}
 		

@@ -35,11 +35,11 @@ public class Node {
      * Adds a two way edge linked to the current Node.
      * @param node
      */
-    public void addEdge(Node node) {
-        edges.put(node, distanceFrom(node));
+    public void addEdge(Node n) {
+        edges.put(n, distanceFrom(n));
         
-        if(!node.edges.keySet().contains(this))
-        	node.addEdge(this);
+        if(!n.edges.keySet().contains(this))
+        	n.addEdge(this);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Node {
      */
     private double distanceFrom(Node node) {
         final double R = 3959.87433; //Radius of earth
-
+        
         double latitudeDifference = Math.toRadians(node.getLatitude() - this.latitude);
         double longitudeDifference = Math.toRadians(node.getLongitude() - this.longitude);
 
