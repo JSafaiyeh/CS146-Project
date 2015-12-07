@@ -373,8 +373,7 @@ public class TestGraph
 				text.setText(stuff);
 			}
 			else if(e.getActionCommand().equals("Get Path")){
-				//text.setText("Directions > will > go > here");
-				
+				reset();
 				l = SJSU.shortestpath(getNodeByName(N1), getNodeByName(N2));
 				gs.getNode(N1).setAttribute("ui.class", "marked");
 				gs.getNode(N2).setAttribute("ui.class", "marked");
@@ -388,13 +387,16 @@ public class TestGraph
 			}
 			else if(e.getActionCommand().equals("Reset")){
 				text.setText("Directions");
-				for(org.graphstream.graph.Edge E: gs.getEdgeSet()){
-					E.removeAttribute("ui.class");
-				}
-	    		for(org.graphstream.graph.Node N: gs.getNodeSet()){
-	    			N.removeAttribute("ui.class");
-	    		}
+				reset();
 			}
+		}
+		public void reset(){
+			for(org.graphstream.graph.Edge E: gs.getEdgeSet()){
+				E.removeAttribute("ui.class");
+			}
+    		for(org.graphstream.graph.Node N: gs.getNodeSet()){
+    			N.removeAttribute("ui.class");
+    		}
 		}
     }
 }
