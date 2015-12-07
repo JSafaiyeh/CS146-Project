@@ -356,45 +356,50 @@ public class SjsuGraph {
             return nodeList.get(0);
         }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //Setup the action listeners for the buttons
-            if (e.getActionCommand().equals("Node1")) {
-                JComboBox cb = (JComboBox) e.getSource();
-                String stuff = (String) cb.getSelectedItem();
-                text.setText(stuff);
-                N1 = stuff;
-            } else if (e.getActionCommand().equals("Node2")) {
-                JComboBox cb = (JComboBox) e.getSource();
-                String stuff = (String) cb.getSelectedItem();
-                text.setText(stuff);
-                N2 = stuff;
-            } else if (e.getActionCommand().equals("Algo")) {
-                JComboBox cb = (JComboBox) e.getSource();
-                String stuff = (String) cb.getSelectedItem();
-                text.setText(stuff);
-            } else if (e.getActionCommand().equals("Get Path")) {
-                //text.setText("Directions > will > go > here");
-
-                l = SJSU.shortestpath(getNodeByName(N1), getNodeByName(N2));
-                gs.getNode(N1).setAttribute("ui.class", "marked");
-                gs.getNode(N2).setAttribute("ui.class", "marked");
-                for (int i = 0; i < l.size() - 1; i++) {
-                    gs.getNode(getNodeByName(l.get(i + 1)).getLocationName()).setAttribute("ui.class", "marked");
-                    gs.getEdge(getNodeByName(l.get(i)).getLocationName() + getNodeByName(l.get(i + 1)).getLocationName()).setAttribute("ui.class", "path");
-                }
-                List<String> directions = l;
-                Collections.reverse(directions);
-                text.setText(String.join(" > ", directions));
-            } else if (e.getActionCommand().equals("Reset")) {
-                text.setText("Directions");
-                for (org.graphstream.graph.Edge E : gs.getEdgeSet()) {
-                    E.removeAttribute("ui.class");
-                }
-                for (org.graphstream.graph.Node N : gs.getNodeSet()) {
-                    N.removeAttribute("ui.class");
-                }
-            }
-        }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Node1")){
+				JComboBox cb = (JComboBox)e.getSource();
+		        String stuff = (String)cb.getSelectedItem();
+				text.setText(stuff);
+				N1 = stuff;
+			}
+			else if(e.getActionCommand().equals("Node2")){
+				JComboBox cb = (JComboBox)e.getSource();
+		        String stuff = (String)cb.getSelectedItem();
+				text.setText(stuff);
+				N2 = stuff;
+			}
+			else if(e.getActionCommand().equals("Algo")){
+				JComboBox cb = (JComboBox)e.getSource();
+		        String stuff = (String)cb.getSelectedItem();
+				text.setText(stuff);
+			}
+			else if(e.getActionCommand().equals("Get Path")){
+				reset();
+				l = SJSU.shortestpath(getNodeByName(N1), getNodeByName(N2));
+				gs.getNode(N1).setAttribute("ui.class", "marked");
+				gs.getNode(N2).setAttribute("ui.class", "marked");
+				for(int i=0;i<l.size()-1;i++){
+					gs.getNode(getNodeByName(l.get(i+1)).getLocationName()).setAttribute("ui.class", "marked");
+					gs.getEdge(getNodeByName(l.get(i)).getLocationName()+getNodeByName(l.get(i+1)).getLocationName()).setAttribute("ui.class", "path");
+	            }
+				List<String> directions = l;
+				Collections.reverse(directions);
+				text.setText(String.join(" > ", directions));
+			}
+			else if(e.getActionCommand().equals("Reset")){
+				text.setText("Directions");
+				reset();
+			}
+		}
+		public void reset(){
+			for(org.graphstream.graph.Edge E: gs.getEdgeSet()){
+				E.removeAttribute("ui.class");
+			}
+    		for(org.graphstream.graph.Node N: gs.getNodeSet()){
+    			N.removeAttribute("ui.class");
+    		}
+		}
     }
 }
